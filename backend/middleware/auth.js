@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
     }
   } catch (error) {
     res.status(401).json({
-      error: error |'Invalid request!'});
+      message: 'Request Token Authentification Invalid !'});
   }
 };
+

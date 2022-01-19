@@ -36,7 +36,7 @@ mongoose
 //       manufacturer: "entreprise01",
 //       description: "ca pic",
 //       mainPepper: "color red",
-//       imageUrl:" ",
+//       imageUrl:"https://www.asiamarche.fr/1988-large_default/sauce-pimentee-sriracha-150g-coq.jpg ",
 //       heat: 10
 //       // likes: 1
 //       // dislikes: 0,
@@ -49,7 +49,7 @@ mongoose
 
 app.use("/api/auth", userRoutes);
 app.use('/api', sauceRoutes);
-app.use('/backend/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 module.exports = app;
