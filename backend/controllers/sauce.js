@@ -26,10 +26,8 @@ exports.createSauce = (req, res, next) => {
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
-    // likes:0,
-    // dislikes:0,
-    // usersLiked: [],
-    // usersDisliked: []
+    likes:0,
+    dislikes:0
   });
   sauce
     .save()
@@ -96,15 +94,16 @@ exports.ajouterLike = (req, res, next) => {
           break;
 
         case 0:
-          if (!postLikes.Sauce.includes(req.body.userId)) {
+          if (postLikes.usersLiked.includes(req.body.userId)) {
             Sauce.updateOne({ _id: req.params.id },
               { $inc: { likes: -1 }, $pull: { usersLiked: req.body.userId } })
               .then(() => res.status(200).json({ message: "Likes modifié = 0 !" }))
               .catch((error) => res.status(400).json({ error }));
           };
 
-          if (!postLikes.usersDisliked.includes(req.body.userId)) {
-            Sauce.updateOne({ _id: req.params.id }, {$inc: { dislikes: -1 },$pull:{ usersDisliked: req.body.userId }})
+          if (postLikes.usersDisliked.includes(req.body.userId)) {
+            Sauce.updateOne({ _id: req.params.id }, 
+              {$inc: { dislikes: -1 }, $pull:{ usersDisliked: req.body.userId }})
               .then(() => res.status(200).json({ message: "disLikes modifié = 0 !" }))
               .catch((error) => res.status(400).json({ error }));
           }
