@@ -1,5 +1,5 @@
 node_modules
 # ignore the file picture
-images\*.jpg
-images\*.jpeg
-images\*.png
+*.jpg
+*.jpeg
+*.png
